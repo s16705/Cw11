@@ -4,14 +4,16 @@ using Cw11.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cw11.Migrations
 {
     [DbContext(typeof(DoctorDbContext))]
-    partial class DoctorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200618212523_addedMedicament")]
+    partial class addedMedicament
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,38 +126,6 @@ namespace Cw11.Migrations
                     b.ToTable("Prescription");
                 });
 
-            modelBuilder.Entity("Cw11.Models.Prescription_Medicament", b =>
-                {
-                    b.Property<int>("IdMedicament")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Details")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<int?>("Dose")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPrescription")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MedicamentsIdMedicament")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PrescriptionsIdPrescription")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdMedicament");
-
-                    b.HasIndex("MedicamentsIdMedicament");
-
-                    b.HasIndex("PrescriptionsIdPrescription");
-
-                    b.ToTable("Prescription_Medicament");
-                });
-
             modelBuilder.Entity("Cw11.Models.Prescription", b =>
                 {
                     b.HasOne("Cw11.Models.Doctor", "Doctors")
@@ -165,17 +135,6 @@ namespace Cw11.Migrations
                     b.HasOne("Cw11.Models.Patient", "Patiens")
                         .WithMany("Prescriptions")
                         .HasForeignKey("PatiensIdPatient");
-                });
-
-            modelBuilder.Entity("Cw11.Models.Prescription_Medicament", b =>
-                {
-                    b.HasOne("Cw11.Models.Medicament", "Medicaments")
-                        .WithMany("Prescription_Medicaments")
-                        .HasForeignKey("MedicamentsIdMedicament");
-
-                    b.HasOne("Cw11.Models.Prescription", "Prescriptions")
-                        .WithMany("Prescription_Medicaments")
-                        .HasForeignKey("PrescriptionsIdPrescription");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,23 +7,21 @@ using System.Threading.Tasks;
 
 namespace Cw11.Models
 {
-    public class Doctor
+    public class Medicament
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdDoctor { get; set; }
-
-        [MaxLength(100)]
-        public string FirstName { get; set; } 
-
-        [MaxLength(100)]
-        public string LastName { get; set; }     
+        public int IdMedicament { get; set; }
         
         [MaxLength(100)]
-        public string Email { get; set; }
+        public string Name { get; set; }
+        
+        [MaxLength(100)]
+        public string Descripiton { get; set; }
 
-        public virtual ICollection<Prescription> Prescriptions { get; set; }
+        [MaxLength(100)]
+        public string Type { get; set; }
 
+        public virtual ICollection<Prescription_Medicament> Prescription_Medicaments { get; set; }
     }
 }
