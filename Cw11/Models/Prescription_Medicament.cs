@@ -9,11 +9,8 @@ namespace Cw11.Models
 {
     public class Prescription_Medicament
     {
-        [Key]
-        [ForeignKey("Medicament")]
         public int IdMedicament { get; set; }
 
-        [ForeignKey("Perscription")]
         public int IdPrescription { get; set; }
 
         public int? Dose { get; set; }

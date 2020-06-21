@@ -2,7 +2,7 @@
 
 namespace Cw11.Migrations
 {
-    public partial class addedPresciptionMedicament : Migration
+    public partial class addedPresMedi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,8 +10,7 @@ namespace Cw11.Migrations
                 name: "Prescription_Medicament",
                 columns: table => new
                 {
-                    IdMedicament = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdMedicament = table.Column<int>(nullable: false),
                     IdPrescription = table.Column<int>(nullable: false),
                     Dose = table.Column<int>(nullable: true),
                     Details = table.Column<string>(maxLength: 100, nullable: true),
@@ -20,7 +19,7 @@ namespace Cw11.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Prescription_Medicament", x => x.IdMedicament);
+                    table.PrimaryKey("PK_Prescription_Medicament", x => new { x.IdMedicament, x.IdPrescription });
                     table.ForeignKey(
                         name: "FK_Prescription_Medicament_Medicament_MedicamentsIdMedicament",
                         column: x => x.MedicamentsIdMedicament,

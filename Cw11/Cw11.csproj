@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200618212647_addedPresciptionMedicament.cs" />
+    <Compile Remove="Migrations\20200618212647_addedPresciptionMedicament.Designer.cs" />
+    <Compile Remove="Migrations\20200621115611_addedKeyPresMedi.cs" />
+    <Compile Remove="Migrations\20200621115611_addedKeyPresMedi.Designer.cs" />
+    <Compile Remove="Migrations\20200621120042_addedKeyPresMedi.cs" />
+    <Compile Remove="Migrations\20200621120042_addedKeyPresMedi.Designer.cs" />
+    <Compile Remove="Migrations\20200621120451_repairPresMed.cs" />
+    <Compile Remove="Migrations\20200621120451_repairPresMed.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">

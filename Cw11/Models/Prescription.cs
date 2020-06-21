@@ -19,11 +19,13 @@ namespace Cw11.Models
 
         [ForeignKey("Patient")]
         public int IdPatient { get; set; }
-        public virtual Patient Patiens { get; set; }
 
         [ForeignKey("Doctor")]
         public int IdDoctor { get; set; }
+
         public virtual Doctor Doctors { get; set; }
+        public virtual Patient Patiens { get; set; }
+
 
         public virtual ICollection<Prescription_Medicament> Prescription_Medicaments { get; set; }
 

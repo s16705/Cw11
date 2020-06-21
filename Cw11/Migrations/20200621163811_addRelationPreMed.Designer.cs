@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cw11.Migrations
 {
     [DbContext(typeof(DoctorDbContext))]
-    [Migration("20200618212647_addedPresciptionMedicament")]
-    partial class addedPresciptionMedicament
+    [Migration("20200621163811_addRelationPreMed")]
+    partial class addRelationPreMed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,9 +129,10 @@ namespace Cw11.Migrations
             modelBuilder.Entity("Cw11.Models.Prescription_Medicament", b =>
                 {
                     b.Property<int>("IdMedicament")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPrescription")
+                        .HasColumnType("int");
 
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(100)")
@@ -140,20 +141,9 @@ namespace Cw11.Migrations
                     b.Property<int?>("Dose")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdPrescription")
-                        .HasColumnType("int");
+                    b.HasKey("IdMedicament", "IdPrescription");
 
-                    b.Property<int?>("MedicamentsIdMedicament")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PrescriptionsIdPrescription")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdMedicament");
-
-                    b.HasIndex("MedicamentsIdMedicament");
-
-                    b.HasIndex("PrescriptionsIdPrescription");
+                    b.HasIndex("IdPrescription");
 
                     b.ToTable("Prescription_Medicament");
                 });
@@ -173,11 +163,15 @@ namespace Cw11.Migrations
                 {
                     b.HasOne("Cw11.Models.Medicament", "Medicaments")
                         .WithMany("Prescription_Medicaments")
-                        .HasForeignKey("MedicamentsIdMedicament");
+                        .HasForeignKey("IdMedicament")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Cw11.Models.Prescription", "Prescriptions")
                         .WithMany("Prescription_Medicaments")
-                        .HasForeignKey("PrescriptionsIdPrescription");
+                        .HasForeignKey("IdPrescription")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
